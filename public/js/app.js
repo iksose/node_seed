@@ -267,6 +267,13 @@ var myApp = angular.module('myApp', ['ui.router', 'ui.bootstrap']);
                 }, 100);
               }]
           })
+
+          .state('database',{
+            url: '/database',
+            templateUrl: 'views/database.html',
+            controller: 'dbController'
+          })
+
       }]);
 
 myApp.run(

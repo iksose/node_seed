@@ -7,7 +7,9 @@ var express = require('express'),
   routes = require('./routes'),
   api = require('./routes/api'),
   http = require('http'),
-  path = require('path');
+  path = require('path'),
+  // mongoose = require('mongoose');
+  wine = require('./routes/wines');
 
 var app = module.exports = express();
 
@@ -37,6 +39,24 @@ if (app.get('env') === 'production') {
 }
 
 
+// mongoose.connect('mongodb://localhost:27017/test');
+
+// var db = mongoose.connection;
+// 	db.on('error', console.error.bind(console, 'connection error:'));
+// 	db.once('open', function callback () {
+//   // yay!
+//   console.log("Connected to mongoose")
+
+// }); //end mongoose
+
+
+app.get('/wines', wine.findAll);
+app.get('/wines/:id', wine.findById);
+app.post('/wines', wine.addWine);
+app.put('/wines/:id', wine.updateWine);
+app.delete('/wines/:id', wine.deleteWine);
+
+
 /**
  * Routes
  */
@@ -45,7 +65,7 @@ if (app.get('env') === 'production') {
 // app.get('/', routes.index);
 
 app.get('/', function(req, res){
-  res.render('index.html');
+  res.render('public/index.html');
 });
 
 
@@ -55,7 +75,7 @@ app.get('/partials/:name', routes.partials);
 app.get('/api/name', api.name);
 
 // redirect all others to the index (HTML5 history)
-app.get('*', routes.index);
+// app.get('*', routes.index);
 
 
 /**
