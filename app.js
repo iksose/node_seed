@@ -9,6 +9,7 @@ var express = require('express'),
   http = require('http'),
   path = require('path'),
   // mongoose = require('mongoose'),
+  dads = require('./routes/daddies')
   wine = require('./routes/wines');
 
 var app = module.exports = express();
@@ -50,6 +51,8 @@ if (app.get('env') === 'production') {
 //   console.log("Connected to mongoose")
 
 // }); //end mongoose
+
+app.get('/daddies', dads.findAll);
 
 
 app.get('/wines', wine.findAll);

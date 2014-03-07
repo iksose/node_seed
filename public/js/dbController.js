@@ -20,6 +20,9 @@ myApp.factory('wineFactory', function($http){
         },
         getWines: function(){
             return $http.get("/wines")
+        },
+        getMovies: function(){
+            return $http.get("/daddies")
         }
     };
 });
@@ -34,6 +37,15 @@ myApp.controller("dbController" ,function ($scope, $state, wineFactory) {
     function handleSuccess(data, status){
         console.log(data, status)
         $scope.wineList = data;
+    }
+
+    $scope.movieList = [];
+
+    wineFactory.getMovies().success(handleSuccess2)
+
+    function handleSuccess2(data, status){
+        console.log(data, status)
+        $scope.movieList = data;
     }
 
 });
