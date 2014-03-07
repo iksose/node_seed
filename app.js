@@ -4,11 +4,10 @@
  */
 
 var express = require('express'),
-  routes = require('./routes'),
-  api = require('./routes/api'),
+  // routes = require('./routes'),
+  // api = require('./routes/api'),
   http = require('http'),
   path = require('path'),
-  // mongoose = require('mongoose'),
   movie = require('./routes/movies')
   wine = require('./routes/wines');
 
@@ -40,18 +39,6 @@ if (app.get('env') === 'production') {
 }
 
 
-// mongoose.connect('mongodb://localhost:27017/test');
-
-// mongoose.connect('mongodb://test1:pass1@ds033679.mongolab.com:33679/iksose_test')
-
-// var db = mongoose.connection;
-// 	db.on('error', console.error.bind(console, 'connection error:'));
-// 	db.once('open', function callback () {
-//   // yay!
-//   console.log("Connected to mongoose")
-
-// }); //end mongoose
-
 app.get('/movies', movie.findAll);
 app.post('/movies', movie.addMovie);
 
@@ -75,10 +62,10 @@ app.get('/', function(req, res){
 });
 
 
-app.get('/partials/:name', routes.partials);
+// app.get('/partials/:name', routes.partials);
 
 // JSON API
-app.get('/api/name', api.name);
+// app.get('/api/name', api.name);
 
 // redirect all others to the index (HTML5 history)
 // app.get('*', routes.index);
