@@ -198,7 +198,7 @@ var myApp = angular.module('myApp', ['ui.router', 'ui.bootstrap']);
               // We wouldn't have to do it this way if we didn't also want to set the 'hint' view below.
               // We could instead just set templateUrl and controller outside of the view obj.
               '': {
-                templateUrl: 'contacts.detail.item.html',
+                templateUrl: 'views/contacts.detail.item.html',
                 controller: ['$scope', '$stateParams', '$state', 'utils',
                   function (  $scope,   $stateParams,   $state,   utils) {
                     $scope.item = utils.findById($scope.contact.items, $stateParams.itemId);
@@ -233,7 +233,7 @@ var myApp = angular.module('myApp', ['ui.router', 'ui.bootstrap']);
               // essentially swapping out the template that 'contact.detail.item' had
               // had inserted with this state's template.
               '@contacts.detail': {
-                templateUrl: 'contacts.detail.item.edit.html',
+                templateUrl: 'views/contacts.detail.item.edit.html',
                 controller: ['$scope', '$stateParams', '$state', 'utils',
                   function (  $scope,   $stateParams,   $state,   utils) {
                     $scope.item = utils.findById($scope.contact.items, $stateParams.itemId);
