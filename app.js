@@ -9,7 +9,7 @@ var express = require('express'),
   http = require('http'),
   path = require('path'),
   // mongoose = require('mongoose'),
-  dads = require('./routes/daddies')
+  movie = require('./routes/movies')
   wine = require('./routes/wines');
 
 var app = module.exports = express();
@@ -52,7 +52,8 @@ if (app.get('env') === 'production') {
 
 // }); //end mongoose
 
-app.get('/daddies', dads.findAll);
+app.get('/movies', movie.findAll);
+app.post('/movies', movie.addMovie);
 
 
 app.get('/wines', wine.findAll);

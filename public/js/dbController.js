@@ -22,7 +22,10 @@ myApp.factory('wineFactory', function($http){
             return $http.get("/wines")
         },
         getMovies: function(){
-            return $http.get("/daddies")
+            return $http.get("/movies")
+        },
+        saveMovie: function(obj){
+            return $http.post("/movies", obj)
         }
     };
 });
@@ -39,6 +42,9 @@ myApp.controller("dbController" ,function ($scope, $state, wineFactory) {
         $scope.wineList = data;
     }
 
+
+    //MOVIES on MONGOOSE :
+
     $scope.movieList = [];
 
     wineFactory.getMovies().success(handleSuccess2)
@@ -47,5 +53,25 @@ myApp.controller("dbController" ,function ($scope, $state, wineFactory) {
         console.log(data, status)
         $scope.movieList = data;
     }
+
+    $scope.movieModel = {
+        title: "",
+        rating: "XXX"
+    }
+    $scope.AddMovie = function(){
+        console.log("ADDING", $scope.movieModel )
+        wineFactory.saveMovie($scope.movieModel).
+            success(function(data, status, headers, config) {
+            // this callback will be called asynchronously
+            // when the response is available
+            console.log("SUCCESS", status, data.error)
+            }).
+            error(function(data, status, headers, config) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+            console.log("ERROR", status, data.ErrorMsg)
+            });
+    }
+    
 
 });
